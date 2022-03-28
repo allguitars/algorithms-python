@@ -1,6 +1,8 @@
-# https://www.youtube.com/watch?v=4CykZVqBuCw&ab_channel=DerrickSherrill
+""" https://www.youtube.com/watch?v=4CykZVqBuCw&ab_channel=DerrickSherrill """
+
 
 def selection_sort(list_a):
+    """ selection sort """
     indexing_length = range(0, len(list_a)-1)
 
     for i in indexing_length:

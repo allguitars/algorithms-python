@@ -1,6 +1,8 @@
-# https://www.youtube.com/watch?v=g_xesqdQqvA&ab_channel=DerrickSherrill
+""" https://www.youtube.com/watch?v=g_xesqdQqvA&ab_channel=DerrickSherrill """
+
 
 def bubble_sort(list_a):
+    """ bubble sort """
     indexing_legth = len(list_a) - 1
     is_sorted = False
     print(list_a)
