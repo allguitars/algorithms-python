@@ -37,21 +37,23 @@ node_names = {
 # 第二的節點 B 的相鄰節點有 A,C,D -> [A, C, D]
 # 以此類推，整個 list of list 如下：
 
-graph = [
-    ['B', 'E'],             # A
-    ['A', 'C', 'D'],        # B
-    ['B', 'G'],             # C
-    ['B', 'F'],             # D
-    ['A', 'H'],             # E
-    ['D', 'G'],             # F
-    ['C', 'F'],             # G
-    ['E']                   # H
-]
+# graph = [
+#     ['B', 'E'],             # A
+#     ['A', 'C', 'D'],        # B
+#     ['B', 'G'],             # C
+#     ['B', 'F'],             # D
+#     ['A', 'H'],             # E
+#     ['D', 'G'],             # F
+#     ['C', 'F'],             # G
+#     ['E']                   # H
+# ]
 
 # 但是外圍 list 很難表示節點名稱，例如 index 0 代表節點 A 還有多一個轉換。
 # 因此我嘗試用 dictionary 來表示圖
 
-adj_list = {
+# example graph from https://youtu.be/-LfSbp_6r7c (BrainWave)
+# OUTPUT: A B C G F D E H
+graph = {
     'A': ['B', 'E'],
     'B': ['A', 'C', 'D'],
     'C': ['B', 'G'],
@@ -61,6 +63,22 @@ adj_list = {
     'G': ['C', 'F'],
     'H': ['E']
 }
+
+# example from https://youtu.be/pcKY4hjDrxk (Abdul Bari)
+# OUTPUT: 1 4 3 10 9 2 8 7 5 6
+# 這個演算法有符合影片中的結果 15:56
+# graph = {
+#     1: [4, 2],
+#     2: [8, 5, 7, 1, 3],
+#     3: [4, 10, 9, 2],
+#     4: [1, 3],
+#     5: [2, 6, 7, 8],
+#     6: [5],
+#     7: [2, 5, 8],
+#     8: [7, 5, 2],
+#     9: [3],
+#     10: [3]
+# }
 
 # 用一個 set 來保存已經拜訪過的節點
 visited = set()
@@ -73,10 +91,10 @@ def dfs(u):
     # process the node
     print(u)
 
-    for v in adj_list[u]:
+    for v in graph[u]:
         if v not in visited:
             dfs(v)
 
 
-# starting from A
 dfs('A')
+# dfs(1)

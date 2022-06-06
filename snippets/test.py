@@ -1,8 +1,4 @@
-queue = []
+mylist = [1, 2, 3]
 
-queue.append('a')
-
-if not queue:
-    print('empty')
-else:
-    print('not empty')
+print(mylist.pop())
+print(mylist)
