@@ -1,12 +1,23 @@
 '''
-[Python] BFS和DFS算法(第2讲)
+黄浩杰 - [Python] BFS和DFS算法(第2讲)
 https://youtu.be/bD8RT0ub--0
-- 黄浩杰
+
+
+Abdul Bari - 5.1 Graph Traversals - BFS & DFS -Breadth First Search and Depth First Search
+https://youtu.be/pcKY4hjDrxk
+
+Back To Back SWE - Depth First & Breadth First Graph Search - DFS & BFS Graph Searching Algorithms
+https://youtu.be/TIbUeeksXcI
+
+思考方向：
+1. 需要額外的 queue 跟 seen
+2. 只要是被放到佇列中的，表示已經被看到過，之後再遇到的時候就不需要再放到佇列了。
+3. 起手式 - 先將第一個節點放到佇列中，這樣後面以佇列為空作為停止條件的迴圈才有辦法進入執行。
+4. 當然這第一個節點也算是被看過
+5. 針對佇列最前面的元素開始"處理"，取出才處理(印出)
+6. 處理之後，查看該節點的"所有相鄰節點"，如果沒有被看到過，才放到佇列中
+7. 記得一放到佇列中就要標示為看過
 '''
-
-from concurrent.futures import process
-from readline import add_history
-
 
 # graph = {
 #     'A': ['B', 'C'],
@@ -17,8 +28,7 @@ from readline import add_history
 #     'F': ['D']
 # }
 
-# another graph example from: https://youtu.be/pcKY4hjDrxk
-# Abdul Bari
+# another graph example from: https://youtu.be/pcKY4hjDrxk  (Abdul Bari)
 graph = {
     1: [4, 2],
     2: [5, 8, 7],
@@ -33,7 +43,7 @@ graph = {
 }
 
 
-def bfs(graph, starting_vertex):
+def bfs(starting_vertex):
     queue = []
     seen = set()
 
@@ -60,5 +70,5 @@ def bfs(graph, starting_vertex):
                 seen.add(v)       # 只要是放到佇列中，就表示被看過。
 
 
-# bfs(graph, 'A')
-bfs(graph, 1)
+# bfs('A')   # exmaple 1
+bfs(1)       # example 2
