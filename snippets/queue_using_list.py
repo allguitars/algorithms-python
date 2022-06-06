@@ -14,7 +14,7 @@ print(mylist)
 mylist.append('c')
 print(mylist)
 
-# dequeue using pop()
+# dequeue using pop(index)
 front = mylist.pop(0)
 print(front)
 print(mylist)

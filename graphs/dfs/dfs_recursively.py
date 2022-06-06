@@ -51,7 +51,7 @@ graph = [
 # 但是外圍 list 很難表示節點名稱，例如 index 0 代表節點 A 還有多一個轉換。
 # 因此我嘗試用 dictionary 來表示圖
 
-adj = {
+adj_list = {
     'A': ['B', 'E'],
     'B': ['A', 'C', 'D'],
     'C': ['B', 'G'],
@@ -73,7 +73,7 @@ def dfs(u):
     # process the node
     print(u)
 
-    for v in adj[u]:
+    for v in adj_list[u]:
         if v not in visited:
             dfs(v)
 
