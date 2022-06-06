@@ -1,3 +1,9 @@
+'''
+lists are quite slow for this purpose because inserting or deleting an element
+at the beginning requires shifting all of the other elements by one,
+requiring O(n) time.
+'''
+
 mylist = []
 
 # enqueue using append()
