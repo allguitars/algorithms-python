@@ -1,4 +1,6 @@
 '''
+* 隨著相鄰節點選擇的不同  traversal的結果也會不同
+
 這裡的 iterative 方式是依照 Back To Back SWE 的演算法
 https://youtu.be/TIbUeeksXcI
 
@@ -7,7 +9,9 @@ https://youtu.be/TIbUeeksXcI
 跟他影片中 (recursive) 執行結果不一樣
 但是用遞迴的方式跑就結果就會跟他的影片一樣 -> 參照 dfs_recursive.py
 
-目前還找不到原因
+仔細推演之後找到原因
+不管是透過迴圈還是遞迴，都有可能走出不一樣的路徑。
+關鍵是在有多個相鄰節點時，選擇不同的節點當作下一步，都會長出不一樣的 traversal 結果。
 '''
 
 # example from https://youtu.be/bD8RT0ub--0 (黄浩杰)
@@ -23,32 +27,32 @@ https://youtu.be/TIbUeeksXcI
 # }
 
 # example graph from https://youtu.be/-LfSbp_6r7c (BrainWave)
-# 影片中的結果是 A B C G F D E H
-# 但我跑的結果是 A E H B D F G C
-# graph = {
-#     'A': ['B', 'E'],
-#     'B': ['A', 'C', 'D'],
-#     'C': ['B', 'G'],
-#     'D': ['B', 'F'],
-#     'E': ['A', 'H'],
-#     'F': ['D', 'G'],
-#     'G': ['C', 'F'],
-#     'H': ['E']
-# }
+# 影片中使用遞迴的結果是 A B C G F D E H
+# 但是用這裡的 iterative 方法則變成 A E H B D F G C
+graph = {
+    'A': ['B', 'E'],
+    'B': ['A', 'C', 'D'],
+    'C': ['B', 'G'],
+    'D': ['B', 'F'],
+    'E': ['A', 'H'],
+    'F': ['D', 'G'],
+    'G': ['C', 'F'],
+    'H': ['E']
+}
 
 # graph example from: https://youtu.be/pcKY4hjDrxk  (Abdul Bari)
-graph = {
-    1: [4, 2],
-    2: [8, 5, 7, 1, 3],
-    3: [4, 10, 9, 2],
-    4: [1, 3],
-    5: [2, 6, 7, 8],
-    6: [5],
-    7: [2, 5, 8],
-    8: [7, 5, 2],
-    9: [3],
-    10: [3]
-}
+# graph = {
+#     1: [4, 2],
+#     2: [8, 5, 7, 1, 3],
+#     3: [4, 10, 9, 2],
+#     4: [1, 3],
+#     5: [2, 6, 7, 8],
+#     6: [5],
+#     7: [2, 5, 8],
+#     8: [7, 5, 2],
+#     9: [3],
+#     10: [3]
+# }
 
 
 def bfs(starting_vertex):
@@ -76,5 +80,5 @@ def bfs(starting_vertex):
                 stack.append(v)
 
 
-bfs(1)
-# bfs('A')
+# bfs(1)
+bfs('A')

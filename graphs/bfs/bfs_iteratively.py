@@ -60,13 +60,13 @@ def bfs(starting_vertex):
 
         # process if not seen
         if vertex not in seen:
-            print(vertex)        # process
-            seen.add(vertex)     # 被處理過就算是被看過
+            print(vertex)          # process it
+            seen.add(vertex)       # 被處理過就算是被看過
 
-        # After processing the vertex, exlpore all its adjanct nodes
+        # After processing the vertex, exlpore all its adjacent nodes
         adj_vetexes = graph[vertex]
         for v in adj_vetexes:
-            if v not in seen:     # 沒有看過的相鄰節點，才需要放到佇列中。
+            if v not in seen:      # 沒有看過的相鄰節點，才需要放到佇列中。
                 queue.append(v)
 
 

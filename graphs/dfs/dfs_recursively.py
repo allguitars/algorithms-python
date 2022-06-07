@@ -1,10 +1,16 @@
+'''
+if we use recursion, then we do not need to explicitly use a stack because
+recursive call automatically maintains a "runtime stack"
 
-# if we use recursion, then we do not need to explicitly use a stack because
-# recursive call automatically maintains a runtime stack
+graph 的長相是依照 https://youtu.be/-LfSbp_6r7c (BrainWave)
+其解釋很好地方在於，利用了 runtime stack 跟 pending adjacent nodes 的輔助
+這樣可以看到遞迴呼叫在回溯的時候應該處理哪些節點
 
-# graph 的長相是依照 https://youtu.be/-LfSbp_6r7c
-# 其解釋很好地方在於，把 runtime stack 跟 pending adjacent nodes 結合說明
-# 這樣可以看到遞迴呼叫在回溯的時候應該處理哪些節點
+但是將同樣的 graph 輸入給遞迴呼叫的 BFS 以及迴圈的 for loop
+尋訪的結果會不一樣
+推測是針對相鄰節點的處理，遞迴呼叫跟 for loop 的順序可能不一樣。
+'''
+
 
 node_names = {
     0: 'A',
