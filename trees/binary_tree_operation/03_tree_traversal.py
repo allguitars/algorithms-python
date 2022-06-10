@@ -33,7 +33,7 @@ class Node:
                 else:
                     self.right.insert(data)
         else:
-            # current node is null
+            # current node does not have data
             self.data = data
 
     def print_tree(self):
