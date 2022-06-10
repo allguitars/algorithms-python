@@ -54,7 +54,6 @@ class Node:
 
     def inorder_traversal(self, node):
         '''
-        in-order traversal 用這個寫法沒有問題
         會由小到大印出
         '''
         if node:
@@ -63,28 +62,15 @@ class Node:
             self.inorder_traversal(node.right)
 
     def preorder_traversal(self, node):
-        '''
-        用這個寫法印出來的結果才會正確
-        [27, 14, 10, 19, 35, 31, 42]
-        '''
-        res = []
         if node:
-            res.append(node.data)
-            res = res + self.preorder_traversal(node.left)
-            res = res + self.preorder_traversal(node.right)
-
-        return res
+            print(node.data)
+            self.preorder_traversal(node.left)
+            self.preorder_traversal(node.right)
 
     def postorder_traversal(self, node):
-        '''
-        如果用跟 inorder traversal 一樣的寫法，印出來的順序不正確。
-        執行結果為 10 14 19 31 35 42 27
-        正確順序應該是 [10, 19, 14, 31, 42, 35, 27] <- 我用手寫演練也是這個結果
-        '''
-        # TODO: find out why the order is not right
         if node:
-            self.inorder_traversal(node.left)
-            self.inorder_traversal(node.right)
+            self.postorder_traversal(node.left)
+            self.postorder_traversal(node.right)
             print(node.data)
 
 
@@ -98,10 +84,10 @@ root.insert(31)
 root.insert(42)
 
 print('>>>>>>>> in-order traversal')
-root.inorder_traversal(root)
+root.inorder_traversal(root)             # 10 14 19 27 31 35 42
 
 print('>>>>>>>> pre-order traversal')
-print(root.preorder_traversal(root))
+root.preorder_traversal(root)            # 27, 14, 10, 19, 35, 31, 42
 
 print('>>>>>>>> post-order traversal')
-root.postorder_traversal(root)
+root.postorder_traversal(root)           # 10, 19, 14, 31, 42, 35, 27
