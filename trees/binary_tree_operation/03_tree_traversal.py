@@ -55,6 +55,7 @@ class Node:
     def inorder_traversal(self, node):
         '''
         in-order traversal 用這個寫法沒有問題
+        會由小到大印出
         '''
         if node:
             self.inorder_traversal(node.left)
