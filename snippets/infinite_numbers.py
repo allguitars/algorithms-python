@@ -9,7 +9,6 @@ the smallest of all numbers.
 - In comparison, negative infinity is smaller than the negative number.
 '''
 
-from cmath import inf
 import math
 
 # 1. use float()
@@ -19,7 +18,6 @@ negative_inf = float('-inf')
 
 print(positive_inf)
 print(negative_inf)
-inf
 
 # 2. use math module
 
