@@ -36,22 +36,6 @@ class Node:
             # current node does not have data
             self.data = data
 
-    def print_tree(self):
-        '''
-        In-order traversal: left, current, right
-        其實就是將數值由小到大印出
-        '''
-        # left subtree
-        if self.left:
-            self.left.print_tree()
-
-        # current node
-        print(self.data)
-
-        # right subtree
-        if self.right:
-            self.right.print_tree()
-
     def inorder_traversal(self, node):
         '''
         會由小到大印出

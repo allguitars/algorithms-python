@@ -18,6 +18,7 @@ class Node:
         Insert a new node recursively
         由 root 代表這個 tree
         每次呼叫都是透過 root
+        這裡的實作是以 binary search tree (BST) 為前提，所以才可以每次都透過 root 呼叫。
         '''
         if self.data:
             if data < self.data:

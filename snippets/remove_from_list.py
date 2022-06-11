@@ -1,5 +1,9 @@
-mylist = [1, 2, 3]
+mylist = [1, 2, 3, 2]
 
 mylist.remove(2)
 
-print(mylist)
+print(mylist)   # 1, 3, 2
+
+mylist.remove(2)
+
+print(mylist)   # 1, 3
