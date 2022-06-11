@@ -16,14 +16,14 @@ class Node:
         self.data = data
 
 
-def height(root):
+def height(node):
 
     # condition to stop the recursive call
-    if root is None:
+    if node is None:
         return 0
 
-    left_height = height(root.left)
-    right_height = height(root.right)
+    left_height = height(node.left)
+    right_height = height(node.right)
 
     return 1 + max(left_height, right_height)
 
