@@ -1,7 +1,5 @@
 '''
 Back to Back SWE: https://youtu.be/suj1ro8TIVY
-
-
 '''
 
 from collections import deque
