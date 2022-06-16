@@ -1,4 +1,3 @@
-mylist = [1, 2, 3]
+mystring = 'a,b,c'
 
-print(mylist.pop())
-print(mylist)
+print(mystring.split(','))
