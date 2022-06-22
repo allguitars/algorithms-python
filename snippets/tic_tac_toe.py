@@ -18,6 +18,8 @@ def move(player, coor):
     else:
         print('This coor is not valid')
 
+    # conditions for diagnols
+
     if coor['x'] == coor['y']:
         if check_left_diagonal(symbols[player]):
             print(player, 'wins')
@@ -25,6 +27,8 @@ def move(player, coor):
     if coor['x'] + coor['y'] == SIZE - 1:
         if check_right_diagonal(symbols[player]):
             print(player, 'wins')
+
+    # conditions for vertical and horizontal lines
 
     if check_horizontal(coor, symbols[player]) or check_vertical(coor, symbols[player]):
         print(player, 'wins')
@@ -36,9 +40,9 @@ def is_valid(coor):
     return True
 
 
-def print_board(board):
+def print_board(game_board):
     for i in range(SIZE):
-        print(board[i])
+        print(game_board[i])
 
     print('-----------------')
 
