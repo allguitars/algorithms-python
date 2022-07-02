@@ -34,7 +34,7 @@ def permutation(path, lst):
         choice = lst.pop(i)           # choice = 'a', lst = ['b', 'c']
         path.append(choice)           # path = ['a']
 
-        permutation(path, lst)  # permutation(['a'], ['b', 'c'])
+        permutation(path, lst)        # permutation(['a'], ['b', 'c'])
 
         # restore the state after returning from the recursive call
 
