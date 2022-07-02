@@ -4,7 +4,7 @@ There are a total of `n` piles of products.
 
 The number of products in each pile is represented by the array `numProducts`.
 
-Select any subarray from the array `numProducts` and pick up products from that subarray such that the number of products you pick from the `ith` pile is strictly less than the number of products you pick from the `(i-1)th` pile for all indices `i` of the subarray.
+Select any subarray from the array `numProducts` and pick up products from that subarray such that the number of products you pick from the `ith` pile is strictly less than the number of products you pick from the `(i+1)th` pile for all indices `i` of the subarray.
 Find the maximum number of products that can be picked.
 
 Input: [7,4,5,2,6,5]
