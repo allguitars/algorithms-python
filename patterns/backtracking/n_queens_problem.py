@@ -47,8 +47,8 @@ def n_queens(path, pool):
     pool_backup = pool[:]
 
     for i in range(len(pool)):  # pool=[0,2] path=[1,3]
-        choice = pool.pop(i)  # choice=[0] pool=[2]
-        path.append(choice)   # [1,3,0] -> safe!
+        choice = pool.pop(i)    # choice=[0] pool=[2]
+        path.append(choice)     # [1,3,0] -> safe!
 
         n_queens(path, pool)
 
