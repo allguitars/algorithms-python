@@ -10,18 +10,14 @@ class Node:
         self.data = data
 
 
-def is_identical(root1, root2):
+def is_identical(p, q):
     # 如果兩個都是空的，表示比到最底了，之前都是一樣的。
-    if (not root1) and (not root2):
+    if (not p) and (not q):
         return True
 
     # 兩個都有內容，則看值是否一樣，若值相同，則遞迴檢查左右子樹。
-    if root1 and root2:
-        if root1.data == root2.data:
-            is_left_identical = is_identical(root1.left, root2.left)
-            is_right_identical = is_identical(root1.right, root2.right)
-
-            return is_left_identical and is_right_identical
+    if p and q and p.data == q.data:
+        return is_identical(p.left, q.left) and is_identical(p.right, q.right)
 
     # 一個有值一個為空
     return False
