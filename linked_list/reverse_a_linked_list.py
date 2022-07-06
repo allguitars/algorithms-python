@@ -7,14 +7,17 @@ ListNode.display(node)  # 1,2,3,4
 
 
 def reverse_list(head):
-    prev_node = None  # the trick
+    prev_node = None  # THE TRICK
     current = head
 
     while current:
-        # backup the original next pointer so we won't lose the trace
+        # 1. backup the original next pointer so we won't lose the trace
         old_next = current.next
 
+        # 2. reverse the pointer
         current.next = prev_node
+
+        # 3. move forward
         prev_node = current
         current = old_next
 
