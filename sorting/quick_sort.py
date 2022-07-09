@@ -25,9 +25,13 @@ def partion(lst, l, h):
 
         # then swap the two numbers
         if i < j:
+            print(f'swapped pair -- i: {i}, j: {j}')
+
             lst[i], lst[j] = lst[j], lst[i]
 
-            print('after swap: ', lst)
+            print('after swapped: ', lst)
+        else:
+            print(f'i ({i}) and j ({j}) have crossed each other, do not swap')
 
     # place pivot in the sorted postion
     lst[l], lst[j] = lst[j], lst[l]
@@ -39,7 +43,7 @@ def sort(lst, l, h):
     '''
     main quicksort algorithm with recursion
     '''
-    if l < h:  # at least two elements
+    if l < h:  # should have at least two elements
         j = partion(lst, l, h)
         sort(lst, l, j)
         sort(lst, j+1, h)
@@ -59,9 +63,14 @@ def quicksort(lst):
         lst.append(float('inf'))
         sort(lst, low, high)
 
+    # pop out the infinity number after the sorting
+    lst.pop()
 
-# SAMPLE = [10, 16, 8, 12, 15, 6, 3, 9, 5]
-SAMPLE = [20, 10]
+
+SAMPLE = [10, 16, 8, 12, 15, 6, 3, 9, 5]
+# SAMPLE = [20, 10]
+# SAMPLE = [10, 10]   # TODO: this case is not handled
 
 quicksort(SAMPLE)
-print(SAMPLE)
+
+print('\nResult:', SAMPLE)
