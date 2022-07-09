@@ -1,7 +1,8 @@
 '''
 Quick Sort - Abdul Bari
 https://youtu.be/7h1s2SojIRw
-Anylysis: https://youtu.be/-qOVVRIZzao
+Anylysis:
+https://youtu.be/-qOVVRIZzao
 '''
 
 
@@ -10,6 +11,8 @@ def partion(lst, l, h):
     l and h indicate the boundary of the sub-list that the
     current recursive call is dealing with.
     '''
+    print(f'>>>> dealing with the partion ({l} - {h})\n')
+
     i, j = l, h
     pivot = lst[l]
 
@@ -29,12 +32,14 @@ def partion(lst, l, h):
 
             lst[i], lst[j] = lst[j], lst[i]
 
-            print('after swapped: ', lst)
+            print('after swapped: ', lst, '\n')
         else:
-            print(f'i ({i}) and j ({j}) have crossed each other, do not swap')
+            print(f'i ({i}) and j ({j}) have crossed each other, do not swap\n')
 
     # place pivot in the sorted postion
     lst[l], lst[j] = lst[j], lst[l]
+    print(f'place the pivot in the sorted position {j}:')
+    print(lst, '\n')
 
     return j
 
