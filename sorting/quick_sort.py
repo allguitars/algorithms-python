@@ -57,8 +57,8 @@ def sort(lst, l, h):
 def quicksort(lst):
     '''
     Provides an function interface for the client.
-    It gets the low and high positions and append an
-    infinity number to the end of the list
+    It gets the low and high positions and append an infinity
+    number to the end of the list before calling the main algorithm.
     '''
     # don't need to sort when there is only one number
     if len(lst) > 1:
