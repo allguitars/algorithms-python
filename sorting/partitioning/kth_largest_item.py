@@ -7,85 +7,89 @@ By QuickSort, this can be solved in O(N log N)
 By Heap data structure, this can also be solve in O(N log N)
 
 With this approach, we can solve it in linear time: O(N)
+Time 計算方式看筆記
 '''
 
 
-def partition(lst, l, r):
+import random
+
+
+def partition(arr, left, right, pivot_index):
     '''
     Once the partition finishes, the chosen pivot will be sitting at
     the final position in its sorted arrangement.
     '''
-    # select the most left item as PIVOT
-    pivot = lst[l]
-    print('pivot:', pivot)
-    # swap lst[l] and lst[r] to place the PIVOT on the right
-    lst[l], lst[r] = lst[r], lst[l]
+    pivot_value = arr[pivot_index]
+    print('pivot:', pivot_value)
+    lesser_items_tail_index = left
 
-    # the iteration starts form the left
-    i = j = l
+    # swap arr[pivot_index] and arr[right] to temporarily store the PIVOT at the right bound
+    swap(arr, pivot_index, right)
 
-    # r is where the pivot initially sits, we do not touch it
-    while j < r:
-        if lst[j] < pivot:
-            lst[i], lst[j] = lst[j], lst[i]
-            i += 1  # only when swap happens do we need to advance i
+    # 這個寫法比我原本用 i and j 兩個 pointer 搭配 while loop 的方式好多了，因為：
+    # i in range 就會在每次 iterate 自動＋1，不需要多寫一行。若是用 while loop 則要自己控制 pointer 迭代。
+    # the iteration starts from the left and ends before hitting the right bound
+    for i in range(left, right):
+        # 如果 i 位置的項目小於 pivot，表示他應該放在 pivot 的左邊。而 tail 是最後 pivot 的家，即 sorted position。
+        if arr[i] < pivot_value:
+            swap(arr, i, lesser_items_tail_index)
+            lesser_items_tail_index += 1
 
-        j += 1  # always advance j
+    # 此時 tail 左邊的項目都會小於 pivot，故把 pivot 替換到這個位置。
+    swap(arr, lesser_items_tail_index, right)
 
-    # i is now at the tail of the "less than pivot" section
-    # so we place the pivot to i
-    # - every item on the left hand side of the pivot is less than the pivot
-    # - every item on the right hand side of the pivot is greater than the pivot
-    lst[i], lst[r] = lst[r], lst[i]
-    print('partioning finished:', lst)
+    # 在這個時間點，在 pivot 左邊的項目都會比 pivot 小（即使沒有左半部沒有 sorted）
+    # 而在 pivot 右邊的項目都會比 pivot 大
+    # ** 意思就是 -- PIVOT 已經位於 SORTED 位置(最終位置)，在整個陣列排序完成之前它都不會再變動位置了。**
 
-    return i
+    print('partioning finished:', arr, '\n')
+    return lesser_items_tail_index  # 回傳分割點（pivot最後所在位置）
 
 
-def find(lst, l, r):
+def find_kth_largest(arr, k):
     '''
-    As we are looking for the kth "largest" item, we do not
-    care the items on the left hand side.
-    Therefore, we just keep partitioning the right hand side.
+    call partition function recursively
     '''
-    if l < r:
-        p = partition(lst, l, r)
-        find(lst, p+1, r)  # keep partitioning right hand side
+    n = len(arr)
+    left = 0
+    right = n-1
+    kth_largest_item_index = n - k
+
+    while left <= right:
+        chosen_pivot_index = random.randint(left, right)  # randomly pick an item as the pivot
+
+        sorted_position_for_chosen_pivot = partition(arr, left, right, chosen_pivot_index)
+
+        # sorted position 剛好落在 n-k，而 sorted postion 即表示這個位置的項目已在最終位置，
+        # 不會再被移動，那這個項目就剛好就是我們要的 item。
+        if sorted_position_for_chosen_pivot == kth_largest_item_index:
+            return arr[sorted_position_for_chosen_pivot]
+
+        if(sorted_position_for_chosen_pivot > kth_largest_item_index):
+            # 如果 sorted pivot 位於 kth_largest_item_index 的右邊，表示我們 overshot!
+            # 那就針對 sorted pivot 左半邊去做 partition
+            # so we go left by narrowing the right bound
+            right = sorted_position_for_chosen_pivot-1
+
+        else:
+            # sorted postition 位在 kth_largest_item_index 的左邊，表示接下來要關注右半部。
+            left = sorted_position_for_chosen_pivot+1
+
+    # 如果到最後都沒有集中 n-k
+    return -1
 
 
-def find_kth_largest(lst, k):
+def swap(arr, first_idx, second_idx):
     '''
-    client interface
+    swap two elements in an arr
     '''
-    # the position where we pick the k'th largest item
-    final_position = len(lst) - k  # the position of the kth largest item
-
-    # initial partitioning range
-    l, r = 0, len(lst)-1
-
-    find(lst, l, r)
-
-    # once the recursion ends, the result will be at the final_position
-    return lst[final_position]
+    arr[first_idx], arr[second_idx] = arr[second_idx], arr[first_idx]
 
 
 # lst = [3, 2, 1, 5, 6, 4]
 # lst = [2, 3]
 lst = [10, 20, 12, 23, 54, 67, 13, 34, 88, 102, 63, 79, 2, 57, 99]
-k = 2
-# k = 4
+# k = 2
+k = 4
 
-print(find_kth_largest(lst, k))
-
-# TODO: this solutio does not handle the case where k is less than
-# n-k
-# 目前的方法都一直針對每一回合的右半邊做 partition
-# 所以只要 k 夠大，n-k 可能就會落在沒有被排序好的那一邊。
-# 例如：當 k=4 時，必須要回傳第4大的項目，最後一輪的 partition 為
-# pivot: 102
-# partioning finished: [2, 10, 12, 20, 13, 23, 34, 54, 67, 63, 79, 57, 88, 99, 102]
-# 57
-
-# 因為有一次 pivot 挑的是 88，pivot 擺定之後，88 左邊確實都比 88小，
-# 但其實沒有排序，如 57 仍擺在 79 的右邊，位於 n-k 的位置。
-# 結果會回傳 57，但 57 不是第 4 大的項目。
+print('Result:', find_kth_largest(lst, k))
