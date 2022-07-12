@@ -19,10 +19,11 @@ def first_occurrence_of_k(arr, k):
         # there can be more the same elems
         if arr[middle] == k:
             # the neightbor to the left is also k
-            if arr[middle-1] == k:
+            # also check if the index is out of bound
+            if middle-1 >= 0 and arr[middle-1] == k:
                 right = middle - 1
             else:
-                # the neightbor to the left is not k,
+                # the neightbor to the left is not k or it does not exist (out of bound)
                 # meaning arr[middle] is the first occurrence
                 # return the index
                 return middle
