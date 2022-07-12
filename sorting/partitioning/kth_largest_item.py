@@ -89,7 +89,7 @@ def swap(arr, first_idx, second_idx):
 # lst = [3, 2, 1, 5, 6, 4]
 # lst = [2, 3]
 lst = [10, 20, 12, 23, 54, 67, 13, 34, 88, 102, 63, 79, 2, 57, 99]
-# k = 2
-k = 4
+# kth = 2
+kth = 4
 
-print('Result:', find_kth_largest(lst, k))
+print('Result:', find_kth_largest(lst, kth))
