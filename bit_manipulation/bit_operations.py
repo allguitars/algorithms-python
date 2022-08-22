@@ -76,3 +76,11 @@ for i in range(0, 32):
         k0 += 1
 
 print(f'{k1} 1s and {k0} 0s')
+
+
+# Bitwise OR multiple elements
+
+# 001 | 001 | 011 -> 011
+print('1 | 1 | 3:', 1 | 1 | 3)  # 3
+# 0100 | 0101 | 1000 -> 1101
+print('4 | 5 | 8:', 4 | 5 | 8)  # 13
