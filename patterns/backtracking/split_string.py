@@ -38,6 +38,12 @@ results = []
 def split_string(s):
     split_helper([], s)
 
+# TODO: make another decision even the node has only one
+# character, making the leaf a node with empty string.
+# This way, all paths will just be the combinations of all the
+# devision branches.
+# we do not need to concatenate the leaf node to get the path.
+
 
 def split_helper(previous_slicing_chain, current):
 
