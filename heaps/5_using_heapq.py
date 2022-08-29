@@ -1,10 +1,10 @@
 '''
 Using insertion process to create a new heap takes O(N log N) time.
-If we just heapify the original array without needing another memory space, it 
+If we just heapify the original array without needing another memory space, it
 will take only O(N) time.
 
 heapq - Heap queue algorithm
-This module provides an implementation of the heap queue algorithm, also 
+This module provides an implementation of the heap queue algorithm, also
 known as the priority queue algorithm.
 
 '''
@@ -31,8 +31,18 @@ hq.heappush(h, (1, 'write spec'))
 hq.heappush(h, (3, 'create tests'))
 print(hq.heappop(h))  # (1, 'write spec')
 
-lst = [10, 20, 15, 30, 40]
+# tuple 可以不需要只有兩個元素
+# 只要第一個元素是可以排序的依據
 
+h = []
+hq.heappush(h, (0, 'a', 'b'))
+hq.heappush(h, (7, 100))
+hq.heappush(h, (1, 20, 30))
+hq.heappush(h, (3, 'hello heap['))
+print(hq.heappop(h))  # (0, 'a', 'b')
+
+# reset list
+lst = [10, 20, 15, 30, 40]
 
 # The following two functions perform best for smaller values of n.
 # For larger values, it is more efficient to use the sorted() function.
